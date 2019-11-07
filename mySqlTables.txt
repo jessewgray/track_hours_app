@@ -1,0 +1,85 @@
+/////////////////
+create user table
+////////////////
+
+CREATE TABLE flaskapp.Users (
+    PersonID int PRIMARY KEY,
+    LastName varchar(255),
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255),
+    Rate float4
+);
+
+INSERT INTO flaskapp.Users (PersonId, LastName, FirstName, Address, City, Rate)
+VALUES (1234, "Gray", "Jesse", "1-88 Beaconsfield", "Toronto", 20.50);
+
+
+
+///////////////////
+create hours table
+///////////////////
+
+CREATE TABLE flaskapp.hours(
+	FromDate date,
+    ToDate date,
+	PersonId int,
+    LastName varchar(255),
+    FirstName varchar(255),
+    Mon float4,
+    Tue float4, 
+    Wed float4, 
+    Thu float4, 
+    Fri float4, 
+    Sat float4, 
+    Sun float4, 
+    TotHours float8,
+    RegHours float8,
+    OtHours float8,
+    RegPay float8,
+    OtPay float8,
+    TotPay float8
+);
+
+INSERT INTO flaskapp.hours (
+	FromDate,
+    ToDate,
+	PersonId, 
+    LastName, 
+    FirstName, 
+    Mon, 
+    Tue, 
+    Wed, 
+    Thu, 
+    Fri, 
+    Sat,
+    Sun, 
+    TotHours, 
+    RegHours, 
+    OtHours,
+    RegPay, 
+    OtPay, 
+    TotPay)
+VALUES (cast('20191101' AS DATETIME), cast('20191106' AS DATETIME), 1234, "Gray", "Jesse", 8, 8, 8, 8, 10.5, 0, 0, 46.5, 40, 6.5, 900, 200, 1100 );
+
+
+
+//////////////////////////
+join hours and user tables
+//////////////////////////
+
+select hours.FromDate, hours.ToDate, users.PersonID, users.LastName, users.FirstName, users.Rate, hours.TotHours, hours.RegHours, hours.OtHours, hours.RegPay, hours.OtPay, hours.TotPay
+from flaskapp.users
+right join flaskapp.hours ON hours.PersonId = users.PersonID;
+
+
+
+//////////////////
+show all table data
+///////////////////
+
+select * from flaskapp.Users;
+
+select * from flaskapp.hours;
+
+
