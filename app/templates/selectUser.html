@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Application select user Page</title>
+    <link rel="stylesheet" href="../static/css/style.css">
     <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -12,7 +13,7 @@
 </head>
 <body>
     <h2>
-        Hello World! select user
+       Select User
     </h2>
 
     <form action="" method="">
@@ -22,6 +23,25 @@
     </select><br>
       <input id="getUserInfo" type="submit" value="Submit">
   </form>
+
+  <div id="hoursTableWrap">
+    <table id="hoursTable">
+        <tr>
+            <th>FromDate</th>
+            <th>ToDate</th> 
+            <th>PersonID</th>
+            <th>LastName</th>
+            <th>FirstName</th>
+            <th>Rate</th>
+            <th>TotHours</th>
+            <th>RegHours</th>
+            <th>OtHours</th>
+            <th>RegPay</th>
+            <th>OtPay</th>
+            <th>TotPay</th>
+        </tr>
+    </table>
+  </div>
 
 </body>
 </html>

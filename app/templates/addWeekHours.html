@@ -11,36 +11,40 @@
 </head>
 <body>
     <h2>
-        Hello World! add week hours
+        Add week hours
     </h2>
 
-<form action="" method="">
+<form action="/postweekhours" method="POST">
     <label for="selectUser">Select User</label>
-    <select name="selectUser" id="selectUser">
+    <select name="name" id="selectUser">
         <option value="">Select</option>
     </select><br>
+    <label for="fName">First Name</label>
+    <input type="text" id="fName" value="" name="fName"><br>
+    <label for="lName">Last Name</label>
+    <input type="text" id="lName" value="" name="lName"><br>
     <label for="rate">Rate</label>
-    <input type="text" id="empRate" value="" ><br>
+    <input type="text" id="empRate" value="" name="rate"><br>
     <label for="fromDate">From Date</label>
-    <input type="text" id="fromDate" value="" ><br>
+    <input type="text" id="fromDate" value="" name="fromDate"><br>
     <label for="toDate">To Date</label>
-    <input type="text" id="toDate" value="" ><br>
+    <input type="text" id="toDate" value="" name="toDate"><br>
     <label for="personId">Person ID</label>
-    <input type="text" id="personId" value="" ><br>
+    <input type="text" id="personId" value="" name="personId"><br>
     <label for="monday">Monday</label>
-    <input type="text" id="monday" value="" ><br>
+    <input type="text" id="monday" value="" name="monday"><br>
     <label for="tuesday">Tuesday</label>
-    <input type="text" id="tuesday" value="" ><br>
+    <input type="text" id="tuesday" value="" name="tuesday"><br>
     <label for="wednesday">Wednesday</label>
-    <input type="text" id="wednesday" value="" ><br>
+    <input type="text" id="wednesday" value="" name="wednesday"><br>
     <label for="thursday">Thursday</label>
-    <input type="text" id="thursday" value="" ><br>
+    <input type="text" id="thursday" value="" name="thursday"><br>
     <label for="friday">Friday</label>
-    <input type="text" id="saturday" value="" ><br>
+    <input type="text" id="friday" value="" name="friday"><br>
     <label for="saturday">Saturday</label>
-    <input type="text" id="sunday" value="" ><br>
+    <input type="text" id="saturday" value="" name="saturday"><br>
     <label for="sunday">Sunday</label>
-    <input type="text" id="sunday" value="" ><br>
+    <input type="text" id="sunday" value="" name="sunday"><br>
     <input id="getUserInfo" type="submit" value="Submit">
  </form>
 
