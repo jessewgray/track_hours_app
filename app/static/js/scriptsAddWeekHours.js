@@ -35,10 +35,14 @@ $( document ).ready(function() {
         	success: function(res) {
             	console.log(res);
             	var pasteUserRate = res[0].Rate;
-            	var pastePersonId = res[0].PersonId;
+				var pastePersonId = res[0].PersonId;
+				var fName = res[0].FirstName;
+				var lName = res[0].LastName;
             	console.log(pasteUserRate);
             	$("#empRate").val(pasteUserRate);
-            	$("#personId").val(pastePersonId)
+				$("#personId").val(pastePersonId);
+				$("#fName").val(fName)
+				$("#lName").val(lName)
         		}
     		});
     		
