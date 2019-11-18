@@ -1,10 +1,6 @@
-from flask import (
-    Flask,
-    render_template,
-    jsonify,
-    request
-)
+from flask import (Flask, render_template, jsonify, request, flash, redirect, session, abort)
 import mysql.connector
+import os
 
 # Create the application instance
 app = Flask(__name__, template_folder="templates")
@@ -12,13 +8,25 @@ app = Flask(__name__, template_folder="templates")
 # Create a URL route in our application for "/"
 @app.route('/')
 def home():
-    """
-    This function just responds to the browser ULR
-    localhost:5000/
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+        return render_template('home.html')
+    
+#login route which sends you back to home when logged in
+@app.route('/login', methods=['POST'])
+def doAdminLogin():
+    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+        session['logged_in'] = True
+    else: 
+        flash('wrong password!')
+    return home()
 
-    :return:        the rendered template 'home.html'
-    """
-    return render_template('home.html')
+
+@app.route("/logout")
+def logout():
+    session['logged_in'] = False
+    return home()
 
 
 
@@ -254,6 +262,7 @@ def showUserHours(username):
 
 # If we're running in stand alone mode, run the application
 if __name__ == '__main__':
+    app.secret_key = os.urandom(12)
     app.run(debug=True)
 
 
