@@ -263,6 +263,6 @@ def showUserHours(username):
 # If we're running in stand alone mode, run the application
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
-    app.run(debug=True)
+    app.run(debug=True, ssl_context='adhoc')
 
 
