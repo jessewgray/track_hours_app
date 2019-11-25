@@ -59,7 +59,7 @@ def postData():
     theCity =   str(request.form['city'])
     theRate = str(request.form['rate'])
 
-    cnx = mysql.connector.connect(user="root", password="root", host="127.0.0.1", database="flaskapp")
+    cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="flaskapp")
     
     mycursor = cnx.cursor()
 
@@ -82,7 +82,7 @@ def postData():
 @app.route('/userlist', methods=['GET'])
 def getUserList():
 
-	cnx = mysql.connector.connect(user="root", password="root", host="127.0.0.1", database="flaskapp")
+	cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="flaskapp")
 	
 	mycursor = cnx.cursor()
 	mycursor.execute("SELECT * From flaskapp.Users")
@@ -112,7 +112,7 @@ def getUserData(username):
     newUsername = str(nUsername.strip())
     print(newUsername)
 
-    cnx = mysql.connector.connect(user="root", password="root", host="127.0.0.1", database="flaskapp")
+    cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="flaskapp")
     
     selectStatement = ("SELECT * FROM flaskapp.Users WHERE FirstName = %(value)s")
     selectParam = {'value': newUsername}
@@ -207,7 +207,7 @@ def postHours():
         "totPay": totPay 
     }
 
-    cnx = mysql.connector.connect(user="root", password="root", host="127.0.0.1", database="flaskapp")
+    cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="flaskapp")
     
     mycursor = cnx.cursor()
 
@@ -234,7 +234,7 @@ def showUserHours(username):
     print(newUsername)
 
 
-    cnx = mysql.connector.connect(user="root", password="root", host="127.0.0.1", database="flaskapp")
+    cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="flaskapp")
     
     selectStatement = ("SELECT hours.FromDate, hours.ToDate, users.PersonID, users.LastName, users.FirstName, users.Rate, hours.TotHours, hours.RegHours, hours.OtHours, hours.RegPay, hours.OtPay, hours.TotPay FROM flaskapp.users RIGHT JOIN flaskapp.hours ON hours.PersonId = users.PersonID WHERE users.FirstName = %(value)s")
     selectParam = {'value': newUsername}
