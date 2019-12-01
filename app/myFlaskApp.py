@@ -48,8 +48,8 @@ def postData():
         "firstName": request.form['firstName'],
         "address": request.form['address'],
         "city": request.form['city'],
-        "rate": request.form['rate']
-
+        "rate": request.form['rate'],
+        "regHours": request.form['regHours']
     }
 
     thePersonId = request.form['personId']
@@ -58,13 +58,14 @@ def postData():
     theAddress = str(request.form['address'])
     theCity =   str(request.form['city'])
     theRate = str(request.form['rate'])
+    regHours = request.form['regHours']
 
     cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="flaskapp")
     
     mycursor = cnx.cursor()
 
-    insertStatement = ('INSERT INTO flaskapp.Users (PersonId, LastName, FirstName, Address, City, Rate) VALUES (%s, %s, %s, %s, %s, %s)')
-    insertData = (thePersonId, theLastName, theFirstName, theAddress, theCity, theRate)
+    insertStatement = ('INSERT INTO flaskapp.Users (PersonId, LastName, FirstName, Address, City, Rate, RegHours) VALUES (%s, %s, %s, %s, %s, %s, %s)')
+    insertData = (thePersonId, theLastName, theFirstName, theAddress, theCity, theRate, regHours)
 
     mycursor.execute(insertStatement, insertData)
     cnx.commit()
@@ -85,7 +86,7 @@ def getUserList():
 	cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="flaskapp")
 	
 	mycursor = cnx.cursor()
-	mycursor.execute("SELECT * From flaskapp.Users")
+	mycursor.execute("SELECT * From flaskapp.Users ORDER BY LastName")
 	myresult = mycursor.fetchall()
 
 	userList = []
@@ -93,7 +94,7 @@ def getUserList():
 
 	for x in myresult:
 		print(x)
-		content = {'PersonId': x[0], 'LastName': x[1], 'FirstName': x[2], 'Address': x[3], 'City': x[4], 'Rate': x[5]}
+		content = {'PersonId': x[0], 'LastName': x[1], 'FirstName': x[2], 'Address': x[3], 'City': x[4], 'Rate': x[5], 'RegHours': x[6]}
 		userList.append(content)
 		content = {}
 	
@@ -127,7 +128,7 @@ def getUserData(username):
 
     for x in myresult:
         print(x)
-        content = {'PersonId': x[0], 'LastName': x[1], 'FirstName': x[2], 'Address': x[3], 'City': x[4], 'Rate': x[5]}
+        content = {'PersonId': x[0], 'LastName': x[1], 'FirstName': x[2], 'Address': x[3], 'City': x[4], 'Rate': x[5], 'RegHours': x[6]}
         userList.append(content)
         content = {}
     
@@ -160,6 +161,7 @@ def postHours():
     fName = str(request.form['fName'])
     rate = float(request.form['rate'])
     otRate = float((rate / 2) + rate)
+    regHours = float(request.form['regHours'])
     fromDate = str(request.form['fromDate'])
     toDate = str(request.form['toDate'])
     personId = str(request.form['personId'])
@@ -172,8 +174,9 @@ def postHours():
     sunday = float(request.form['sunday'])
     totHours = float(monday + tuesday + wednesday + thursday + friday + saturday + sunday)
     
-    if totHours > 40:
-        regHours = 40
+
+    if totHours > regHours:
+        
         otHours = totHours - regHours
     else:
         regHours = totHours
@@ -189,6 +192,7 @@ def postHours():
         "fName": fName,
         "rate": rate,
         "otRate": otRate,
+        "regHours": regHours,
         "fromDate": fromDate,
         "toDate": toDate,
         "personId": personId,
@@ -264,5 +268,3 @@ def showUserHours(username):
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
     app.run(debug=True, ssl_context='adhoc')
-
-

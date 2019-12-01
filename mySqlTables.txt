@@ -8,11 +8,12 @@ CREATE TABLE flaskapp.Users (
     FirstName varchar(255),
     Address varchar(255),
     City varchar(255),
-    Rate float4
+    Rate float4,
+    RegHours float4
 );
 
-INSERT INTO flaskapp.Users (PersonId, LastName, FirstName, Address, City, Rate)
-VALUES (1234, "Gray", "Jesse", "1-88 Beaconsfield", "Toronto", 20.50);
+INSERT INTO flaskapp.Users (PersonId, LastName, FirstName, Address, City, Rate, RegHours)
+VALUES (1234, "Gray", "Jesse", "1-88 Beaconsfield", "Toronto", 20.50, 44);
 
 
 
