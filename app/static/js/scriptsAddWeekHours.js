@@ -38,11 +38,12 @@ $( document ).ready(function() {
 				var pastePersonId = res[0].PersonId;
 				var fName = res[0].FirstName;
 				var lName = res[0].LastName;
-            	console.log(pasteUserRate);
+				var rHours = res[0].RegHours;
             	$("#empRate").val(pasteUserRate);
 				$("#personId").val(pastePersonId);
-				$("#fName").val(fName)
-				$("#lName").val(lName)
+				$("#fName").val(fName);
+				$("#lName").val(lName);
+				$("#regHours").val(rHours)
         		}
     		});
     		
