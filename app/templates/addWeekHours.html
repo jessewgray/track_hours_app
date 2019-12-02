@@ -10,45 +10,418 @@
     <script src="./static/js/scriptsAddWeekHours.js"></script>
 </head>
 <body>
+        {% include "menu.html" %}
     <h2>
         Add week hours
     </h2>
 
-<form action="/postweekhours" method="POST">
-    <label for="selectUser">Select User</label>
-    <select name="name" id="selectUser">
-        <option value="">Select</option>
-    </select><br>
-    <label for="fName">First Name</label>
-    <input type="text" id="fName" value="" name="fName"><br>
-    <label for="lName">Last Name</label>
-    <input type="text" id="lName" value="" name="lName"><br>
-    <label for="rate">Rate</label>
-    <input type="text" id="empRate" value="" name="rate"><br>
-    <label for="regHours">Regular Hours</label>
-    <input type="text" id="regHours" value="" name="regHours"><br>
-    <label for="fromDate">From Date</label>
-    <input type="text" id="fromDate" value="" name="fromDate"><br>
-    <label for="toDate">To Date</label>
-    <input type="text" id="toDate" value="" name="toDate"><br>
-    <label for="personId">Person ID</label>
-    <input type="text" id="personId" value="" name="personId"><br>
-    <label for="monday">Monday</label>
-    <input type="text" id="monday" value="" name="monday"><br>
-    <label for="tuesday">Tuesday</label>
-    <input type="text" id="tuesday" value="" name="tuesday"><br>
-    <label for="wednesday">Wednesday</label>
-    <input type="text" id="wednesday" value="" name="wednesday"><br>
-    <label for="thursday">Thursday</label>
-    <input type="text" id="thursday" value="" name="thursday"><br>
-    <label for="friday">Friday</label>
-    <input type="text" id="friday" value="" name="friday"><br>
-    <label for="saturday">Saturday</label>
-    <input type="text" id="saturday" value="" name="saturday"><br>
-    <label for="sunday">Sunday</label>
-    <input type="text" id="sunday" value="" name="sunday"><br>
-    <input id="getUserInfo" type="submit" value="Submit">
- </form>
+    <form action="/postweekhours" method="POST">
+        <label for="selectUser">Select User</label>
+        <select name="name" id="selectUser">
+            <option value="">Select</option>
+        </select>
+        <br>
+        <label for="fName">First Name</label>
+        <input type="text" id="fName" value="" name="fName">
+        <br>
+        <label for="lName">Last Name</label>
+        <input type="text" id="lName" value="" name="lName">
+        <br>
+        <label for="rate">Rate</label>
+        <input type="text" id="empRate" value="" name="rate">
+        <br>
+        <label for="regHours">Regular Hours</label>
+        <input type="text" id="regHours" value="" name="regHours">
+        <br>
+        <label for="fromDate">From Date</label>
+        <input type="text" id="fromDate" value="" name="fromDate">
+        <br>
+        <label for="toDate">To Date</label>
+        <input type="text" id="toDate" value="" name="toDate">
+        <br>
+        <label for="personId">Person ID</label>
+        <input type="text" id="personId" value="" name="personId">
+        <br>
+        <label for="mondayIn">Monday In</label>
+        <select id="mondayInHour" value="" name="mondayInHour">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="0">12</option>
+        </select>
+        <select id="mondayInMin" value="" name="mondayInMin">
+            <option value="0">00</option>
+            <option value=".25">15</option>
+            <option value=".5">30</option>
+            <option value=".75">45</option>
+        </select>
+        <select id="mondayInAmPm" value="" name="mondayInAmPm">
+            <option value="off">Off</option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+        </select>
+        <br>
+        <label for="mondayOut">Monday Out</label>
+        <select id="mondayOutHour" value="" name="mondayOutHour">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="0">12</option>
+        </select>
+        <select id="mondayOutMin" value="" name="mondayOutMin">
+            <option value="0">00</option>
+            <option value=".25">15</option>
+            <option value=".5">30</option>
+            <option value=".75">45</option>
+        </select>
+        <select id="mondayOutAmPm" value="" name="mondayOutAmPm">
+            <option value="off">Off</option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+        </select>
+        <br>
+        <label for="tuesdayIn">Tuesday In</label>
+        <select id="tuesdayInHour" value="" name="tuesdayInHour">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="0">12</option>
+        </select>
+        <select id="tuesdayInMin" value="" name="tuesdayInMin">
+            <option value="0">00</option>
+            <option value=".25">15</option>
+            <option value=".5">30</option>
+            <option value=".75">45</option>
+        </select>
+        <select id="tuesdayInAmPm" value="" name="tuesdayInAmPm">
+            <option value="off">Off</option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+        </select>
+        <br>
+        <label for="tuesdayOut">Tuesday Out</label>
+        <select id="tuesdayOutHour" value="" name="tuesdayOutHour">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="0">12</option>
+        </select>
+        <select id="tuesdayOutMin" value="" name="tuesdayOutMin">
+            <option value="0">00</option>
+            <option value=".25">15</option>
+            <option value=".5">30</option>
+            <option value=".75">45</option>
+        </select>
+        <select id="tuesdayOutAmPm" value="" name="tuesdayOutAmPm">
+            <option value="off">Off</option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+        </select>
+        <br>
+        <label for="wednesdayIn">Wednesday In</label>
+        <select id="wednesdayInHour" value="" name="wednesdayInHour">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="0">12</option>
+        </select>
+        <select id="wednesdayInMin" value="" name="wednesdayInMin">
+            <option value="0">00</option>
+            <option value=".25">15</option>
+            <option value=".5">30</option>
+            <option value=".75">45</option>
+        </select>
+        <select id="wednesdayInAmPm" value="" name="wednesdayInAmPm">
+            <option value="off">Off</option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+        </select>
+        <br>
+        <label for="wednesdayOut">Wednesday Out</label>
+        <select id="wednesdayOutHour" value="" name="wednesdayOutHour">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="0">12</option>
+        </select>
+        <select id="wednesdayOutMin" value="" name="wednesdayOutMin">
+            <option value="0">00</option>
+            <option value=".25">15</option>
+            <option value=".5">30</option>
+            <option value=".75">45</option>
+        </select>
+        <select id="wednesdayOutAmPm" value="" name="wednesdayOutAmPm">
+            <option value="off">Off</option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+        </select>
+        <br>
+        <label for="thursdayIn">Thursday In</label>
+        <select id="thursdayInHour" value="" name="thursdayInHour">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="0">12</option>
+        </select>
+        <select id="thursdayInMin" value="" name="thursdayInMin">
+            <option value="0">00</option>
+            <option value=".25">15</option>
+            <option value=".5">30</option>
+            <option value=".75">45</option>
+        </select>
+        <select id="thursdayInAmPm" value="" name="thursdayInAmPm">
+            <option value="off">Off</option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+        </select>
+        <br>
+        <label for="thursdayOut">Thursday Out</label>
+        <select id="thursdayOutHour" value="" name="thursdayOutHour">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="0">12</option>
+        </select>
+        <select id="thursdayOutMin" value="" name="thursdayOutMin">
+            <option value="0">00</option>
+            <option value=".25">15</option>
+            <option value=".5">30</option>
+            <option value=".75">45</option>
+        </select>
+        <select id="thursdayOutAmPm" value="" name="thursdayOutAmPm">
+            <option value="off">Off</option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+        </select>
+        <br>
+        <label for="fridayIn">Friday In</label>
+        <select id="fridayInHour" value="" name="fridayInHour">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="0">12</option>
+        </select>
+        <select id="fridayInMin" value="" name="fridayInMin">
+            <option value="0">00</option>
+            <option value=".25">15</option>
+            <option value=".5">30</option>
+            <option value=".75">45</option>
+        </select>
+        <select id="fridayInAmPm" value="" name="fridayInAmPm">
+            <option value="off">Off</option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+        </select>
+        <br>
+        <label for="fridayOut">Friday Out</label>
+        <select id="fridayOutHour" value="" name="fridayOutHour">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="0">12</option>
+        </select>
+        <select id="fridayOutMin" value="" name="fridayOutMin">
+            <option value="0">00</option>
+            <option value=".25">15</option>
+            <option value=".5">30</option>
+            <option value=".75">45</option>
+        </select>
+        <select id="fridayOutAmPm" value="" name="fridayOutAmPm">
+            <option value="off">Off</option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+        </select>
+        <br>
+        <label for="saturdayIn">Saturday In</label>
+        <select id="saturdayInHour" value="" name="saturdayInHour">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="0">12</option>
+        </select>
+        <select id="saturdayInMin" value="" name="saturdayInMin">
+            <option value="0">00</option>
+            <option value=".25">15</option>
+            <option value=".5">30</option>
+            <option value=".75">45</option>
+        </select>
+        <select id="saturdayInAmPm" value="" name="saturdayInAmPm">
+            <option value="off">Off</option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+        </select>
+        <br>
+        <label for="saturdayOut">Saturday Out</label>
+        <select id="saturdayOutHour" value="" name="saturdayOutHour">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="0">12</option>
+        </select>
+        <select id="saturdayOutMin" value="" name="saturdayOutMin">
+            <option value="0">00</option>
+            <option value=".25">15</option>
+            <option value=".5">30</option>
+            <option value=".75">45</option>
+        </select>
+        <select id="saturdayOutAmPm" value="" name="saturdayOutAmPm">
+            <option value="off">Off</option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+        </select>
+        <br>
+        <label for="sundayIn">Sunday In</label>
+        <select id="sundayInHour" value="" name="sundayInHour">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="0">12</option>
+        </select>
+        <select id="sundayInMin" value="" name="sundayInMin">
+            <option value="0">00</option>
+            <option value=".25">15</option>
+            <option value=".5">30</option>
+            <option value=".75">45</option>
+        </select>
+        <select id="sundayInAmPm" value="" name="sundayInAmPm">
+            <option value="off">Off</option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+        </select>
+        <br>
+        <label for="sundayOut">Sunday Out</label>
+        <select id="sundayOutHour" value="" name="sundayOutHour">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="0">12</option>
+        </select>
+        <select id="sundayOutMin" value="" name="sundayOutMin">
+            <option value="0">00</option>
+            <option value=".25">15</option>
+            <option value=".5">30</option>
+            <option value=".75">45</option>
+        </select>
+        <select id="sundayOutAmPm" value="" name="sundayOutAmPm">
+            <option value="off">Off</option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+        </select>
+        <br>
+        <input id="getUserInfo" type="submit" value="Submit">
+    </form>
 
 </body>
 </html>

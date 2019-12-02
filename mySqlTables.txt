@@ -2,7 +2,7 @@
 create user table
 ////////////////
 
-CREATE TABLE flaskapp.Users (
+CREATE TABLE hours_flaskapp.users (
     PersonID int PRIMARY KEY,
     LastName varchar(255),
     FirstName varchar(255),

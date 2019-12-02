@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Application select user Page</title>
+    <title>drop user</title>
     <link rel="stylesheet" href="../static/css/style.css">
     <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
-    <script src="./static/js/scriptsSelectUser.js"></script>
+    <script src="./static/js/scriptsDropUser.js"></script>
 
 </head>
 <body>
@@ -17,32 +17,19 @@
        Select User
     </h2>
 
-    <form action="" method="">
+    <form action="/dropuserbyid" method="POST">
     <label for="selectUser">Select User</label>
       <select name="selectUser" id="selectUser">
           <option value="">Select</option>
     </select><br>
+    <label for="userId">User ID</label>
+    <input type="text" value="" id="userId" name="userId"><br>
+    <label for="fName">First Name</label>
+    <input type="text" value="" id="fName" name="fName"><br>
+    <label for="lName">Last Name</label>
+    <input type="text" value="" id="lName" name="lName"><br>
       <input id="getUserInfo" type="submit" value="Submit">
   </form>
-
-  <div id="hoursTableWrap">
-    <table id="hoursTable">
-        <tr>
-            <th>FromDate</th>
-            <th>ToDate</th> 
-            <th>PersonID</th>
-            <th>LastName</th>
-            <th>FirstName</th>
-            <th>Rate</th>
-            <th>TotHours</th>
-            <th>RegHours</th>
-            <th>OtHours</th>
-            <th>RegPay</th>
-            <th>OtPay</th>
-            <th>TotPay</th>
-        </tr>
-    </table>
-  </div>
 
 </body>
 </html>
