@@ -60,11 +60,11 @@ def postData():
     theRate = str(request.form['rate'])
     regHours = request.form['regHours']
 
-    cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="flaskapp")
+    cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="hours_flaskapp")
     
     mycursor = cnx.cursor()
 
-    insertStatement = ('INSERT INTO flaskapp.Users (PersonId, LastName, FirstName, Address, City, Rate, RegHours) VALUES (%s, %s, %s, %s, %s, %s, %s)')
+    insertStatement = ('INSERT INTO hours_flaskapp.users (PersonId, LastName, FirstName, Address, City, Rate, RegHours) VALUES (%s, %s, %s, %s, %s, %s, %s)')
     insertData = (thePersonId, theLastName, theFirstName, theAddress, theCity, theRate, regHours)
 
     mycursor.execute(insertStatement, insertData)
@@ -83,10 +83,10 @@ def postData():
 @app.route('/userlist', methods=['GET'])
 def getUserList():
 
-	cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="flaskapp")
+	cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="hours_flaskapp")
 	
 	mycursor = cnx.cursor()
-	mycursor.execute("SELECT * From flaskapp.Users ORDER BY LastName")
+	mycursor.execute("SELECT * From hours_flaskapp.users ORDER BY LastName")
 	myresult = mycursor.fetchall()
 
 	userList = []
@@ -113,9 +113,9 @@ def getUserData(username):
     newUsername = str(nUsername.strip())
     print(newUsername)
 
-    cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="flaskapp")
+    cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="hours_flaskapp")
     
-    selectStatement = ("SELECT * FROM flaskapp.Users WHERE FirstName = %(value)s")
+    selectStatement = ("SELECT * FROM hours_flaskapp.Users WHERE FirstName = %(value)s")
     selectParam = {'value': newUsername}
 
 
@@ -165,13 +165,132 @@ def postHours():
     fromDate = str(request.form['fromDate'])
     toDate = str(request.form['toDate'])
     personId = str(request.form['personId'])
-    monday = float(request.form['monday'])
-    tuesday = float(request.form['tuesday'])
-    wednesday = float(request.form['wednesday'])
-    thursday = float(request.form['thursday'])
-    friday = float(request.form['friday'])
-    saturday = float(request.form['saturday'])
-    sunday = float(request.form['sunday'])
+    mondayInHour = float(request.form['mondayInHour'])
+    mondayInMin = float(request.form['mondayInMin'])
+    mondayInAmPm = str(request.form['mondayInAmPm'])
+    mondayOutHour = float(request.form['mondayOutHour'])
+    mondayOutMin = float(request.form['mondayOutMin'])
+    mondayOutAmPm = str(request.form['mondayOutAmPm'])
+    if mondayInAmPm == 'off' or mondayOutAmPm == 'off':
+        monday = 0
+    else:
+        if mondayInAmPm == 'pm':
+            mondayIn = mondayInHour + 12 + mondayInMin
+        else:
+            mondayIn = mondayInHour + mondayInMin
+        if mondayOutAmPm == 'pm':
+            mondayOut = mondayOutHour + 12 + mondayOutMin
+        else:
+            mondayOut = mondayOutHour + mondayOutMin
+        monday = mondayOut - mondayIn
+    tuesdayInHour = float(request.form['tuesdayInHour'])
+    tuesdayInMin = float(request.form['tuesdayInMin'])
+    tuesdayInAmPm = str(request.form['tuesdayInAmPm'])
+    tuesdayOutHour = float(request.form['tuesdayOutHour'])
+    tuesdayOutMin = float(request.form['tuesdayOutMin'])
+    tuesdayOutAmPm = str(request.form['tuesdayOutAmPm'])
+    if tuesdayInAmPm == 'off' or tuesdayOutAmPm == 'off':
+        tuesday = 0
+    else:
+        if tuesdayInAmPm == 'pm':
+            tuesdayIn = tuesdayInHour + 12 + tuesdayInMin
+        else:
+            tuesdayIn = tuesdayInHour + tuesdayInMin
+        if tuesdayOutAmPm == 'pm':
+            tuesdayOut = tuesdayOutHour + 12 + tuesdayOutMin
+        else:
+            tuesdayOut = tuesdayOutHour + tuesdayOutMin
+        tuesday = tuesdayOut - tuesdayIn
+    wednesdayInHour = float(request.form['wednesdayInHour'])
+    wednesdayInMin = float(request.form['wednesdayInMin'])
+    wednesdayInAmPm = str(request.form['wednesdayInAmPm'])
+    wednesdayOutHour = float(request.form['wednesdayOutHour'])
+    wednesdayOutMin = float(request.form['wednesdayOutMin'])
+    wednesdayOutAmPm = str(request.form['wednesdayOutAmPm'])
+    if wednesdayInAmPm == 'off' or wednesdayOutAmPm == 'off':
+        wednesday = 0
+    else:
+        if wednesdayInAmPm == 'pm':
+            wednesdayIn = wednesdayInHour + 12 + wednesdayInMin
+        else:
+            wednesdayIn = wednesdayInHour + wednesdayInMin
+        if wednesdayOutAmPm == 'pm':
+            wednesdayOut = wednesdayOutHour + 12 + wednesdayOutMin
+        else:
+            wednesdayOut = wednesdayOutHour + wednesdayOutMin
+        wednesday = wednesdayOut - wednesdayIn
+    thursdayInHour = float(request.form['thursdayInHour'])
+    thursdayInMin = float(request.form['thursdayInMin'])
+    thursdayInAmPm = str(request.form['thursdayInAmPm'])
+    thursdayOutHour = float(request.form['thursdayOutHour'])
+    thursdayOutMin = float(request.form['thursdayOutMin'])
+    thursdayOutAmPm = str(request.form['thursdayOutAmPm'])
+    if thursdayInAmPm == 'off' or thursdayOutAmPm == 'off':
+        thursday = 0
+    else:
+        if thursdayInAmPm == 'pm':
+            thursdayIn = thursdayInHour + 12 + thursdayInMin
+        else:
+            thursdayIn = thursdayInHour + thursdayInMin
+        if thursdayOutAmPm == 'pm':
+            thursdayOut = thursdayOutHour + 12 + thursdayOutMin
+        else:
+            thursdayOut = thursdayOutHour + thursdayOutMin
+        thursday = thursdayOut - thursdayIn
+    fridayInHour = float(request.form['fridayInHour'])
+    fridayInMin = float(request.form['fridayInMin'])
+    fridayInAmPm = str(request.form['fridayInAmPm'])
+    fridayOutHour = float(request.form['fridayOutHour'])
+    fridayOutMin = float(request.form['fridayOutMin'])
+    fridayOutAmPm = str(request.form['fridayOutAmPm'])
+    if fridayInAmPm == 'off' or fridayOutAmPm == 'off':
+        friday = 0
+    else:
+        if fridayInAmPm == 'pm':
+            fridayIn = fridayInHour + 12 + fridayInMin
+        else:
+            fridayIn = fridayInHour + fridayInMin
+        if fridayOutAmPm == 'pm':
+            fridayOut = fridayOutHour + 12 + fridayOutMin
+        else:
+            fridayOut = fridayOutHour + fridayOutMin
+        friday = fridayOut - fridayIn
+    saturdayInHour = float(request.form['saturdayInHour'])
+    saturdayInMin = float(request.form['saturdayInMin'])
+    saturdayInAmPm = str(request.form['saturdayInAmPm'])
+    saturdayOutHour = float(request.form['saturdayOutHour'])
+    saturdayOutMin = float(request.form['saturdayOutMin'])
+    saturdayOutAmPm = str(request.form['saturdayOutAmPm'])
+    if saturdayInAmPm == 'off' or saturdayOutAmPm == 'off':
+        saturday = 0
+    else:
+        if saturdayInAmPm == 'pm':
+            saturdayIn = saturdayInHour + 12 + saturdayInMin
+        else:
+            saturdayIn = saturdayInHour + saturdayInMin
+        if saturdayOutAmPm == 'pm':
+            saturdayOut = saturdayOutHour + 12 + saturdayOutMin
+        else:
+            saturdayOut = saturdayOutHour + saturdayOutMin
+        saturday = saturdayOut - saturdayIn
+    sundayInHour = float(request.form['sundayInHour'])
+    sundayInMin = float(request.form['sundayInMin'])
+    sundayInAmPm = str(request.form['sundayInAmPm'])
+    sundayOutHour = float(request.form['sundayOutHour'])
+    sundayOutMin = float(request.form['sundayOutMin'])
+    sundayOutAmPm = str(request.form['sundayOutAmPm'])
+    if sundayInAmPm == 'off' or sundayOutAmPm == 'off':
+        sunday = 0
+    else:
+        if sundayInAmPm == 'pm':
+            sundayIn = sundayInHour + 12 + sundayInMin
+        else:
+            sundayIn = sundayInHour + sundayInMin
+        if sundayOutAmPm == 'pm':
+            sundayOut = sundayOutHour + 12 + sundayOutMin
+        else:
+            sundayOut = sundayOutHour + sundayOutMin
+        sunday = sundayOut - sundayIn
     totHours = float(monday + tuesday + wednesday + thursday + friday + saturday + sunday)
     
 
@@ -211,11 +330,11 @@ def postHours():
         "totPay": totPay 
     }
 
-    cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="flaskapp")
+    cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="hours_flaskapp")
     
     mycursor = cnx.cursor()
 
-    insertStatement = ('INSERT INTO flaskapp.hours (FromDate, ToDate, PersonId, LastName, FirstName, Mon, Tue, Wed, Thu, Fri, Sat, Sun, TotHours, RegHours, OtHours, RegPay, OtPay, TotPay) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)')
+    insertStatement = ('INSERT INTO hours_flaskapp.hours (FromDate, ToDate, PersonId, LastName, FirstName, Mon, Tue, Wed, Thu, Fri, Sat, Sun, TotHours, RegHours, OtHours, RegPay, OtPay, TotPay) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)')
     insertData = (fromDate, toDate, personId, lName, fName, monday, tuesday, wednesday, thursday, friday, saturday, sunday, totHours, regHours, otHours, regPay, otPay, totPay)
 
     mycursor.execute(insertStatement, insertData)
@@ -238,9 +357,9 @@ def showUserHours(username):
     print(newUsername)
 
 
-    cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="flaskapp")
+    cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="hours_flaskapp")
     
-    selectStatement = ("SELECT hours.FromDate, hours.ToDate, users.PersonID, users.LastName, users.FirstName, users.Rate, hours.TotHours, hours.RegHours, hours.OtHours, hours.RegPay, hours.OtPay, hours.TotPay FROM flaskapp.users RIGHT JOIN flaskapp.hours ON hours.PersonId = users.PersonID WHERE users.FirstName = %(value)s")
+    selectStatement = ("SELECT hours_flaskapp.hours.FromDate, hours_flaskapp.hours.ToDate, hours_flaskapp.users.PersonID, hours_flaskapp.users.LastName, hours_flaskapp.users.FirstName, hours_flaskapp.users.Rate, hours_flaskapp.hours.TotHours, hours_flaskapp.hours.RegHours, hours_flaskapp.hours.OtHours, hours_flaskapp.hours.RegPay, hours_flaskapp.hours.OtPay, hours_flaskapp.hours.TotPay FROM hours_flaskapp.users RIGHT JOIN hours_flaskapp.hours ON hours_flaskapp.hours.PersonId = hours_flaskapp.users.PersonID WHERE hours_flaskapp.users.FirstName = %(value)s")
     selectParam = {'value': newUsername}
 
 
@@ -262,6 +381,42 @@ def showUserHours(username):
     return jsonify(userHours)
 
 
+
+#this route will allow you to select user to drop
+@app.route('/dropuser', methods=['GET'])
+def dropUser():
+
+    return render_template('dropUser.html')
+
+
+#this route will post dropped user and user hours
+@app.route('/dropuserbyid', methods=['GET', 'POST'])
+def showDropUser():
+
+    userId = str(request.form['userId'])
+    fName = str(request.form['fName'])
+    lName = str(request.form['lName'])
+
+    params = {
+        'User ID': userId,
+        'First Name': fName,
+        'Last Name': lName
+    }
+
+    cnx = mysql.connector.connect(user="root", password="snowboarding", host="127.0.0.1", database="hours_flaskapp")
+    
+    mycursor = cnx.cursor()
+
+    dropUserStatement = ('DELETE FROM hours_flaskapp.users WHERE PersonID = "%s";' % userId)
+    dropUserHoursStatement = ('DELETE FROM hours_flaskapp.hours WHERE PersonID = "%s";' % userId)
+
+    mycursor.execute(dropUserStatement)
+    mycursor.execute(dropUserHoursStatement)
+    cnx.commit()
+
+    
+    return jsonify(params)
+    #return render_template('dropUser.html')
 
 
 # If we're running in stand alone mode, run the application
